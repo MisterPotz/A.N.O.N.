@@ -79,7 +79,7 @@ void subscriberCb(const geometry_msgs::PoseConstPtr &info){
 //helper function to calculate euclidean distance between two 3d points in space
 double calDistance(geometry_msgs::Pose current, const actionlib_server::MyMsgGoalConstPtr &goal){
   double dist;
-  dist = sqrt(pow((goal->x - current.position.x), 2) + pow((goal->y - current.position.y), 2) + pow((goal->z - current.position.z), 2));
+  dist = sqrt(pow((goal->x - current.position.x), 2) + pow((goal->y - current.position.y), 2));
   //std::cout<<"dist: " << dist << endl;
   return dist;
 }
@@ -108,7 +108,7 @@ void actionCb(const actionlib_server::MyMsgGoalConstPtr &goal){
     if (action_server.isPreemptRequested() || !ros::ok()){
       move.linear.x = pos_info_.position.x;
       move.linear.y = pos_info_.position.y;
-      move.linear.z = pos_info_.position.z;
+      move.angular.z = pos_info_.position.z;
       cmd_vel_pub_.publish(move); // make the drone stop as sooon as the preempt occurs - trick-->sending current pose as cmd_vel
       ROS_INFO("%s: Preemted", action_name_.c_str());
       // set the action state to preempted
@@ -125,7 +125,7 @@ void actionCb(const actionlib_server::MyMsgGoalConstPtr &goal){
 
   //check if succeded--yes-->return result_
   if(success){
-    result_.status = "Desyination arrived!";
+    result_.status = "Destination arrived!";
     ROS_INFO("%s: Succeded", action_name_.c_str());
     // set the action state to succeded
     action_server.setSucceeded(result_);
@@ -141,7 +141,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "action_server");
 
-  MoveRobotAction robot("go_to_point_AS");
+  MoveRobotAction robot(ros::this_node::getName());
   ros::Rate rate(0.5);
   int n = 0;
   while(ros::ok()){
