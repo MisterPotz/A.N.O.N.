@@ -27,5 +27,27 @@
   <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/-->
   
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"  required="true" />
-  
+
+  <!-- node for twist commands from keyboard, runs in the same terminal -->
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"/>
+
+  <!-- NAVIGATION NODE -->
+
+    <!-- Odometry frame is fixed with map -->
+  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
+    args="0 0 0 0 0 0 map odom 100"/>
+
+    <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <!--include file="$(find bot)/src/launch/bot_gmapping.launch"/-->
+    <!-- Move_base node -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find bot)/src/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find bot)/src/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find bot)/src/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find bot)/src/config/global_costmap_params.yaml" command="load" />    
+    <rosparam file="$(find bot)/src/config/move_base_params.yaml" command="load" />
+    <rosparam file="$(find bot)/src/config/base_global_planner_params.yaml" command="load"/>
+    <rosparam file="$(find bot)/src/config/dwa_local_planner_params.yaml" command="load" />
+  </node>
+
 </launch>

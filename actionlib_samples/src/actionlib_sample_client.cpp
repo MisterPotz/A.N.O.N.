@@ -10,7 +10,7 @@ int main(int argc, char** argv)
   client.waitForServer(); //will wait for infinite time
   ROS_INFO("Action server started, sending goal.");
   actionlib_samples::actionlib_sampleGoal goal;// send a goal to the action
-  goal.input = 20;
+  goal.input = 25;
   client.sendGoal(goal);
   //wait for the action to return
   bool finished_before_timeout = client.waitForResult();
@@ -18,10 +18,11 @@ int main(int argc, char** argv)
   {
     actionlib::SimpleClientGoalState state = client.getState();
     ROS_INFO("Action finished: %s",state.toString().c_str());
-    
+  
   }
   else
     ROS_INFO("Action did not finish before the time out.");
+  ROS_INFO("Result is: %d", client.getResult()->output);
   //exit
   return 0;
 }
