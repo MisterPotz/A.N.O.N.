@@ -70,14 +70,14 @@ ROS_INFO("Publishers initialized");
 
 // callback for our gt_vel subscriber
 // it recieves velocity info in the form of Twist message
-void subscriberCb(const geometry_msgs::PointConstPtr &info){
+void subscriberCb(const geometry_msgs::PoseConstPtr &info){
   pos_info_.position.x = info->position.x;
   pos_info_.position.y = info->position.y;
   pos_info_.position.z = info->position.z;
 }
 
 //helper function to calculate euclidean distance between two 3d points in space
-double calDistance(geometry_msgs::Pose current, const actionlib_server::MyMsgActionGoalConstPtr &goal){
+double calDistance(geometry_msgs::Pose current, const actionlib_server::MyMsgGoalConstPtr &goal){
   double dist;
   dist = sqrt(pow((goal->x - current.position.x), 2) + pow((goal->y - current.position.y), 2) + pow((goal->z - current.position.z), 2));
   //std::cout<<"dist: " << dist << endl;
@@ -85,7 +85,7 @@ double calDistance(geometry_msgs::Pose current, const actionlib_server::MyMsgAct
 }
 
 //main action server callback
-void actionCb(const actionlib_server::MyMsgActionGoalConstPtr &goal){
+void actionCb(const actionlib_server::MyMsgGoalConstPtr &goal){
   ros::Rate rate(50);
   bool success = true;
   //do the cool stuff here - i have to move the robot
@@ -133,6 +133,7 @@ void actionCb(const actionlib_server::MyMsgActionGoalConstPtr &goal){
 
 }
 
+
 };
 
 
@@ -140,7 +141,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "action_server");
 
-  MoveRobotAction robot("go_to_point");
+  MoveRobotAction robot("go_to_point_AS");
   ros::Rate rate(0.5);
   int n = 0;
   while(ros::ok()){
