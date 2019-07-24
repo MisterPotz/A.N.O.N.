@@ -84,6 +84,10 @@ double calDistance(geometry_msgs::Pose current, const actionlib_server::MyMsgGoa
   return dist;
 }
 
+//TODO завязать analysisCB на опен-луп для достижения точки (каждую итерацию отсылать
+//cmd_vel) пока не доедем с определенной точностью)
+/* конечно по-хорошему надо делать так, чтобы это работало от dwa (то есть фиксить работу 
+с этой штукой). возможно она тупит, потому что не до конца настроено окружение */
 //main action server callback
 void actionCb(const actionlib_server::MyMsgGoalConstPtr &goal){
   ros::Rate rate(50);
