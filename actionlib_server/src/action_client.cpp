@@ -9,15 +9,10 @@ int main(int argc, char** argv)
   ROS_INFO("Waiting for action server to start.");
   client.waitForServer(); //will wait for infinite time
   ROS_INFO("Action server started, sending goal.");
-<<<<<<< HEAD:actionlib_samples/src/actionlib_sample_client.cpp
-  actionlib_samples::actionlib_sampleGoal goal;// send a goal to the action
-  goal.input = 25;
-=======
   actionlib_server::MyMsgGoal goal;// send a goal to the action
   goal.x = 1;
   goal.y = 1;
   goal.z = 0;
->>>>>>> test_branch:actionlib_server/src/action_client.cpp
   client.sendGoal(goal);
   //wait for the action to return
   bool finished_before_timeout = client.waitForResult();
@@ -29,7 +24,7 @@ int main(int argc, char** argv)
   }
   else
     ROS_INFO("Action did not finish before the time out.");
-  ROS_INFO("Result is: %d", client.getResult()->output);
+  ROS_INFO("Result is: %d", client.getResult()->status);
   //exit
   return 0;
 }
