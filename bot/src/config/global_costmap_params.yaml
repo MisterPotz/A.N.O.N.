@@ -1,12 +1,12 @@
 global_costmap:
   global_frame: map
-  robot_base_frame: base_link
+  robot_base_frame: base_footprint
 
   update_frequency: 10.0
   publish_frequency: 10.0
-  transform_tolerance: 0.5
+  transform_tolerance: 0.6 #maximum amount of latency allowed between these transforms
   static_map: false
   rolling_window: true
-  width: 6.0
-  height: 6.0
+  width: 20.0
+  height: 20.0
  

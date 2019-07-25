@@ -49,5 +49,7 @@
     <rosparam file="$(find bot)/src/config/base_global_planner_params.yaml" command="load"/>
     <rosparam file="$(find bot)/src/config/dwa_local_planner_params.yaml" command="load" />
   </node>
-
+ <!-- TODO необходимо попробовать изменить центр футпринта, возможно проблема в этом, поставить центр футпринта прямо между колёс
+      потому как path не знает, что футпринт и сам робот немного не так соотносятся
+    кажись это сработало-->
 </launch>
