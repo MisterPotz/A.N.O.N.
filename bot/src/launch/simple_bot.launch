@@ -47,7 +47,7 @@
     <rosparam file="$(find bot)/src/config/global_costmap_params.yaml" command="load" />    
     <rosparam file="$(find bot)/src/config/move_base_params.yaml" command="load" />
     <rosparam file="$(find bot)/src/config/base_global_planner_params.yaml" command="load"/>
-    <rosparam file="$(find bot)/src/config/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find bot)/src/config/base_local_planner_params.yaml" command="load" />
   </node>
  <!-- TODO unneccessary to deal with these problems: Could not transform the global plan to the frame of the controller
  и  Extrapolation Error: Lookup would require extrapolation into the future.  -->
