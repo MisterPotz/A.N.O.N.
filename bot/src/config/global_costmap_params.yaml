@@ -1,6 +1,8 @@
 global_costmap:
   global_frame: map
-  robot_base_frame: base_footprint
+  robot_base_frame: base_footprint #центр base_footprint находится прямо между колес
+                                  #именно это пофиксило вращение робота при достижении цели 
+
 
   update_frequency: 10.0
   publish_frequency: 10.0
