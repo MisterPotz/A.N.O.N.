@@ -107,9 +107,6 @@
     </visual>
   </link>
   <!-- BASE_FOOTPRINT -->
-          <!-- этот элемент нужен для того, чтобы был "правильный" base_footprint, чей
-              центр находится между колёсами. иначе робот начинает крутиться
-              когда достигает цель -->
   <link name='base_footprint'>
     <collision name="base_footprint_collision">
       <xacro:default_origin/>
