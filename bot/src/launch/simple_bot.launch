@@ -34,11 +34,11 @@
   <!-- NAVIGATION NODE -->
 
     <!-- Odometry frame is fixed with map -->
-  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
-    args="0 0 0 0 0 0 map odom 100"/>
+  <!--node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
+    args="0 0 0 0 0 0 map odom 100"/-->
 
     <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
-  <!--include file="$(find bot)/src/launch/bot_gmapping.launch"/-->
+  <include file="$(find bot)/src/launch/slam_bot.launch"/>
     <!-- Move_base node -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find bot)/src/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
