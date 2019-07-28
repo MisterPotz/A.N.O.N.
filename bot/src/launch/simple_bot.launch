@@ -8,6 +8,9 @@
   <param name="use_gui" value="$(arg gui)"/>
   <!--param name="robot_description" command="$(find xacro)/xacro '$(find bot)/src/model/bot.xacro'"/-->
   <param name="robot_description" command="$(find xacro)/xacro '$(find bot)/src/model/bot.xacro'"/>
+
+   <param name="test_area_description" textfile="$(find bot)/src/cartographer_config/Test_area/model.sdf" />
+
   <!-- ADDITIONAL FILES -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="worlds/empty_world.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
@@ -22,6 +25,9 @@
   <node name="bot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
    args="-urdf -param robot_description -model bot -z 0.5" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <node name="test_area_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+    args="-sdf -param test_area_description -model Test_area"  />
 
   <!-- we don't need the following line as long as gazebo plugin publishes the states of wheels /-->
   <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/-->
