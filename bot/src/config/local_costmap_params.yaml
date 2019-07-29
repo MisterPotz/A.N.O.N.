@@ -1,15 +1,15 @@
 local_costmap:
-  global_frame: odom
+  global_frame: map
   robot_base_frame: base_footprint #центр base_footprint находится прямо между колес
                                   #именно это пофиксило вращение робота при достижении цели 
 
   update_frequency: 10.0
   publish_frequency: 10.0
-  transform_tolerance: 0.6
+  transform_tolerance: 0.7
 
   static_map: false  
   rolling_window: true
-  width: 3.0
-  height: 3.0
+  width: 3.5
+  height: 3.5
   resolution: 0.05
   

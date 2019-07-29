@@ -6,7 +6,7 @@ global_costmap:
 
   update_frequency: 10.0
   publish_frequency: 10.0
-  transform_tolerance: 0.6 #maximum amount of latency allowed between these transforms
+  transform_tolerance: 0.7 #maximum amount of latency allowed between these transforms
   static_map: false
   rolling_window: true
   width: 20.0
